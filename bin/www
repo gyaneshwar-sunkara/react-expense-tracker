@@ -5,19 +5,9 @@
  */
 
 const app = require("../app");
-const dotenv = require("dotenv").config();
 const debug = require("debug")("react-expense-tracker:server");
 const http = require("http");
 const mongoose = require("mongoose");
-
-/**
- * Environment Variables
- */
-if (dotenv.error) {
-  throw dotenv.error;
-}
-
-debug("Environment variables", dotenv.parsed);
 
 /**
  * Connect to MongoDB Server
