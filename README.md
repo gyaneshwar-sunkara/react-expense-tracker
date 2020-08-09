@@ -1,4 +1,4 @@
 # React Expense Tracker
 
 # Live Server
-https://react-expense-trackr.herokuapp.com
+https://react-expense-tracker-gs.herokuapp.com

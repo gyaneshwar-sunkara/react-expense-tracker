@@ -17,7 +17,7 @@ function Auth(props) {
 }
 
 export default function Dashboard() {
-  const { signedIn, signIn } = useContext(GlobalContext);
+  const { signedIn } = useContext(GlobalContext);
 
   return (
     <React.Fragment>
