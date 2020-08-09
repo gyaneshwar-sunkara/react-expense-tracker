@@ -4,6 +4,7 @@ import AppReducer from "./AppReducer";
 // Initial state
 const initialState = {
   transactions: [],
+  signedIn: false,
 };
 
 // Create context
@@ -28,10 +29,25 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function signIn() {
+    dispatch({
+      type: "Sign_In",
+    });
+  }
+
+  function signOut() {
+    dispatch({
+      type: "Sign_Out",
+    });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         transactions: state.transactions,
+        signedIn: state.signedIn,
+        signIn,
+        signOut,
         deleteTransaction,
         addTransaction,
       }}

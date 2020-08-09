@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect, Link as RLink } from "react-router-dom";
 import axios from "axios";
 
@@ -16,6 +16,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Snackbar } from "@material-ui/core";
+
+import { GlobalContext } from "../context/GlobalState";
 
 function Auth(props) {
   if (props.auth) {
@@ -60,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const [auth, setAuth] = useState(false);
+  const { signedIn, signIn } = useContext(GlobalContext);
   const [state, setState] = useState({
     firstname: "",
     lastname: "",
@@ -109,7 +111,7 @@ export default function SignUp() {
           email: "",
           password: "",
         });
-        setAuth(true);
+        signIn();
       })
       .catch((err) => {
         if (err.response) {
@@ -140,7 +142,7 @@ export default function SignUp() {
 
   return (
     <React.Fragment>
-      <Auth auth={auth} />
+      <Auth auth={signedIn} />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>

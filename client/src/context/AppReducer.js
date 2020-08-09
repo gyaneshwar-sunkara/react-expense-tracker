@@ -1,5 +1,15 @@
 export default (state, action) => {
   switch (action.type) {
+    case "Sign_In":
+      return {
+        ...state,
+        signedIn: true,
+      };
+    case "Sign_Out":
+      return {
+        ...state,
+        signedIn: false,
+      };
     case "DELETE_TRANSACTION":
       return {
         ...state,
@@ -12,6 +22,7 @@ export default (state, action) => {
         ...state,
         transactions: [action.payload, ...state.transactions],
       };
+
     default:
       return state;
   }

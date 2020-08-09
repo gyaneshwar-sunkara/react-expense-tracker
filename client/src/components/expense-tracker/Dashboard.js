@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
+
 import { Header } from "./Header";
 import { Balance } from "./Balance";
 import { IncomeExpenses } from "./IncomeExpenses";
 import { TransactionList } from "./TransactionList";
 import { AddTransaction } from "./AddTransaction";
-import { GlobalProvider } from "../../context/GlobalState";
+
+import { GlobalContext } from "../../context/GlobalState";
+
+function Auth(props) {
+  if (props.auth) {
+    return <Redirect to="/" />;
+  }
+  return null;
+}
 
 export default function Dashboard() {
+  const { signedIn, signIn } = useContext(GlobalContext);
+
   return (
-    <GlobalProvider>
+    <React.Fragment>
+      <Auth auth={!signedIn} />
       <Header />
       <div className="container">
         <Balance />
@@ -16,6 +29,6 @@ export default function Dashboard() {
         <TransactionList />
         <AddTransaction />
       </div>
-    </GlobalProvider>
+    </React.Fragment>
   );
 }
